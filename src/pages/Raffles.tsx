@@ -10,6 +10,8 @@ export type Raffles = {
 };
 
 export function Raffles() {
+	document.title = "Rifas";
+
 	const responseApi = async () => {
 		const response = await api.get("/");
 		return response.data.documents;

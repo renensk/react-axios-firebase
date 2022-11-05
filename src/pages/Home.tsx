@@ -2,6 +2,8 @@ import reactLogo from "../assets/react.svg";
 import "../App.css";
 
 export function Home() {
+	document.title = "Vite + React + Axios + Firebase";
+
 	return (
 		<div className="App">
 			<div>

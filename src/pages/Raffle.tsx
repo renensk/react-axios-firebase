@@ -20,10 +20,13 @@ export type Raffle = {
 };
 
 export function Raffle() {
+	document.title = "Rifa";
+
 	const params = useParams();
 	const currentUser = (params["*"] as string).substring(
 		(params["*"] as string).lastIndexOf("/") + 1
 	);
+
 	const responseApi = async () => {
 		const response = await api.get(`/${currentUser}`);
 		return response.data;
