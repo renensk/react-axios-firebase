@@ -2,7 +2,6 @@ import axios from "axios";
 import { useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { api } from "../services/api";
-import { Usuario } from "./Raffles";
 
 export type Raffle = {
 	[key: string]: any;
@@ -10,27 +9,13 @@ export type Raffle = {
 	createTime: string;
 	updateTime: string;
 	fields: {
-		title: {
-			stringValue: string;
-		};
-		name: {
-			stringValue: string;
-		};
-		price: {
-			integerValue: string;
-		};
-		status: {
-			stringValue: string;
-		};
-		tags: {
-			stringValue: string;
-		};
-		lastModifiedAt: {
-			timestampValue: string;
-		};
-		createdAt: {
-			timestampValue: string;
-		};
+		title: { stringValue: string };
+		name: { stringValue: string };
+		price: { integerValue: string };
+		status: { stringValue: string };
+		tag: { stringValue: string };
+		lastModifiedAt: { timestampValue: string };
+		createdAt: { timestampValue: string };
 	};
 };
 
@@ -39,34 +24,22 @@ export function Raffle() {
 	const currentUser = (params["*"] as string).substring(
 		(params["*"] as string).lastIndexOf("/") + 1
 	);
+	const responseApi = async () => {
+		const response = await api.get(`/${currentUser}`);
+		return response.data;
+	};
 
-	//using firebase api
-	const { data, isFetching, error } = useQuery<Raffle[]>(
-		"raffle",
-		async () => {
-			var data: Raffle | PromiseLike<Raffle> = [];
+	const responseJson = async () => {
+		const response = await axios.get("/data/raffle.json");
+		return response.data;
+	};
 
-			const response = await axios.get("/data/raffle.json").then((response) => {
-				data = response.data;
-			});
-
-			//using firebase api
-			// const response = await api.get(`/${currentUser}`).then((response) => {
-			// 	data = response.data;
-			// });
-
-			return data;
-		},
+	// USING JSON FILE
+	const { data, isFetching, error } = useQuery<Raffle>(
+		["raffle", { currentUser }],
+		responseJson,
 		{ staleTime: 1000 * 60 }
 	);
-
-	// const fatchRaffle = (): Promise<Raffle[]> =>
-	// 	api.get(`/${currentUser}`).then((response) => response.data);
-
-	// const { data, isFetching, error } = useQuery(
-	// 	["raffle", { currentUser }],
-	// 	fatchRaffle
-	// );
 
 	if (error) {
 		console.error(error);

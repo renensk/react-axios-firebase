@@ -3,35 +3,26 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { api } from "../services/api";
 
-export type Usuario = {
+export type Raffles = {
 	name: string;
+	updateTime: string;
+	createTime: string;
 };
 
-export type Raffles = [
-	{
-		name: string;
-		updateTime: string;
-		createTime: string;
-	}
-];
-
 export function Raffles() {
+	const responseApi = async () => {
+		const response = await api.get("/");
+		return response.data.documents;
+	};
+
+	const responseJson = async () => {
+		const response = await axios.get("/data/raffles.json");
+		return response.data.documents;
+	};
+
 	const { data, isFetching, error } = useQuery<Raffles[]>(
 		"raffles",
-		async () => {
-			var data: Raffles[] | PromiseLike<Raffles[]> = [];
-
-			const response = await axios.get("/data/raffles.json").then((response) => {
-				data = response.data.documents;
-			});
-
-			//using firebase api
-			// const response = await api.get("/").then((response) => {
-			// 	data = response.data.documents;
-			// });
-
-			return data;
-		},
+		responseJson,
 		{ staleTime: 1000 * 60 }
 	);
 
