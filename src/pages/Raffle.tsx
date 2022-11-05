@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { api } from "../services/api";
@@ -24,35 +25,48 @@ export type Raffle = {
 		tags: {
 			stringValue: string;
 		};
+		lastModifiedAt: {
+			timestampValue: string;
+		};
+		createdAt: {
+			timestampValue: string;
+		};
 	};
 };
 
 export function Raffle() {
 	const params = useParams();
-	const currentUser = params["*"] as string;
+	const currentUser = (params["*"] as string).substring(
+		(params["*"] as string).lastIndexOf("/") + 1
+	);
 
-	{
-		/* 
-	const queryClient = useQueryClient();
-
+	//using firebase api
 	const { data, isFetching, error } = useQuery<Raffle[]>(
-		["user", { currentUser }],
+		"raffle",
 		async () => {
-			const response = await api.get(`/${currentUser}`);
-			return response.data;
+			var data: Raffle | PromiseLike<Raffle> = [];
+
+			const response = await axios.get("/data/raffle.json").then((response) => {
+				data = response.data;
+			});
+
+			//using firebase api
+			// const response = await api.get(`/${currentUser}`).then((response) => {
+			// 	data = response.data;
+			// });
+
+			return data;
 		},
-		{ staleTime: 10000 * 60 }
+		{ staleTime: 1000 * 60 }
 	);
-	*/
-	}
 
-	const fatchRaffle = (): Promise<Raffle[]> =>
-		api.get(`/${currentUser}`).then((response) => response.data);
+	// const fatchRaffle = (): Promise<Raffle[]> =>
+	// 	api.get(`/${currentUser}`).then((response) => response.data);
 
-	const { data, isFetching, error } = useQuery(
-		["raffle", { currentUser }],
-		fatchRaffle
-	);
+	// const { data, isFetching, error } = useQuery(
+	// 	["raffle", { currentUser }],
+	// 	fatchRaffle
+	// );
 
 	if (error) {
 		console.error(error);
@@ -64,9 +78,9 @@ export function Raffle() {
 			{isFetching && <p>Carregando...</p>}
 			{data && (
 				<li key={data.name}>
-					<p>{data.name}</p>
-					<p>{data.fields.title.stringValue}</p>
-					<p>`Create time: ${data.createTime}`</p>
+					<p>ID: {data.name.substring(data.name.lastIndexOf("/") + 1)}</p>
+					<p>Title: {data.fields.title.stringValue}</p>
+					<p>`Create time: {data.fields.createdAt.timestampValue}`</p>
 					<p>{data.fields.tag.stringValue}</p>
 				</li>
 			)}

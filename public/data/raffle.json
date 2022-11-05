@@ -1,0 +1,157 @@
+{
+	"name": "projects/rifas-335115/databases/(default)/documents/rifas/Pvl0g6K7Y0Qr9Kfw96R0",
+	"fields": {
+	  "title": {
+		"stringValue": "teste array numbers 10"
+	  },
+	  "price": {
+		"integerValue": "2331"
+	  },
+	  "lastModifiedAt": {
+		"timestampValue": "2022-10-27T14:32:38.845Z"
+	  },
+	  "createdAt": {
+		"timestampValue": "2022-10-27T14:32:38.845Z"
+	  },
+	  "tag": {
+		"stringValue": ""
+	  },
+	  "numbers": {
+		"arrayValue": {
+		  "values": [
+			{
+			  "mapValue": {
+				"fields": {
+				  "status": {
+					"stringValue": "Disponível"
+				  },
+				  "value": {
+					"stringValue": "0"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "value": {
+					"stringValue": "1"
+				  },
+				  "status": {
+					"stringValue": "Pago"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "value": {
+					"stringValue": "2"
+				  },
+				  "status": {
+					"stringValue": "Disponível"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "value": {
+					"stringValue": "3"
+				  },
+				  "status": {
+					"stringValue": "Pago"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "status": {
+					"stringValue": "Disponível"
+				  },
+				  "value": {
+					"stringValue": "4"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "status": {
+					"stringValue": "Reservado"
+				  },
+				  "value": {
+					"stringValue": "5"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "status": {
+					"stringValue": "Disponível"
+				  },
+				  "value": {
+					"stringValue": "6"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "status": {
+					"stringValue": "Disponível"
+				  },
+				  "value": {
+					"stringValue": "7"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "value": {
+					"stringValue": "8"
+				  },
+				  "status": {
+					"stringValue": "Disponível"
+				  }
+				}
+			  }
+			},
+			{
+			  "mapValue": {
+				"fields": {
+				  "value": {
+					"stringValue": "9"
+				  },
+				  "status": {
+					"stringValue": "Disponível"
+				  }
+				}
+			  }
+			}
+		  ]
+		}
+	  },
+	  "name": {
+		"stringValue": "teste array numbers 10"
+	  },
+	  "status": {
+		"stringValue": "pending"
+	  },
+	  "quantity": {
+		"integerValue": "10"
+	  }
+	},
+	"createTime": "2022-10-27T14:32:38.938918Z",
+	"updateTime": "2022-10-27T14:39:35.783758Z"
+  }
